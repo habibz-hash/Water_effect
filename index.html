@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پایگاه حقیقت علمی</title>
+    <style>
+        /* تنظیمات پایه */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0b;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* افکت پس‌زمینه درخشان متحرک */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a2a2a 0%, #0a0a0b 70%);
+            animation: pulse 10s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+
+        /* محتوا */
+        .hero-section {
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* دکمه فراخوان (CTA) */
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid #00ffcc;
+            color: #00ffcc;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+
+        .cta-button:hover {
+            background: #00ffcc;
+            color: #0a0a0b;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.6);
+            cursor: pointer;
+        }
+
+        /* انیمیشن ورود */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* واکنش‌گرایی برای موبایل */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.1rem; }
+            .cta-button { padding: 12px 25px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero-section">
+        <h1>پایگاه حقیقت علمی</h1>
+        <h2>عصر جدید تبادل دانش</h2>
+        
+        <!-- لینک جایگذاری شود -->
+        <a href=" https://nowpayments.io/payment/?iid=5004725215 " class="cta-button">حمایت مالی و خرید ویدئو</a>
+    </section>
+
+</body>
+</html>
