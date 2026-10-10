@@ -3,23 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Neon Page</title>
+    <title>پایگاه حقیقت علمی</title>
     <style>
-        /* Reset & Base Styles */
-        * {
+        /* وارد کردن فونت مدرن فارسی */
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap');
+
+        /* تنظیمات پایه و حذف حاشیه‌ها */
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body, html {
             height: 100%;
             width: 100%;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* فونت مدرن سیستم */
-            overflow: hidden; /* جلوگیری از اسکرول برای تک‌صفحه‌ای بودن */
+            font-family: 'Vazirmatn', sans-serif;
+            overflow: hidden; /* برای حالت تک‌صفحه‌ای */
         }
 
-        /* شرط اول: پس‌زمینه تمام صفحه، Cover و ثابت */
+        /* تنظیم پس‌زمینه تمام‌صفحه، ثابت و Cover */
         body {
             background-image: url('https://s6.uupload.ir/files/8nljqchtvomd-hl_fwp_w8_4ecg.png');
             background-size: cover;
@@ -27,45 +26,78 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             
-            /* شرط دوم: تراز کردن محتوا در مرکز */
+            /* مرکزگرایی محتوا در وسط صفحه */
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
         }
 
-        /* شرط دوم: استایل متن‌های نئونی آبی فسفری */
-        .container {
-            padding: 20px;
-        }
-
-        h1, p, span {
-            color: #00f3ff; /* رنگ آبی فسفری نئونی */
-            text-shadow: 
-                0 0 5px #00f3ff,
-                0 0 10px #00f3ff,
-                0 0 20px #00f3ff; /* ایجاد افکت درخشش نئونی */
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        /* استایل فرضی برای المان‌های بعدی */
+        /* باکس محتوا با طراحی شیشه‌ای و نئونی */
         .content-box {
-            background: rgba(0, 0, 0, 0.4); /* پس‌زمینه نیمه‌شفاف برای خوانایی بهتر متن روی تصویر */
-            padding: 3rem;
-            border-radius: 15px;
-            backdrop-filter: blur(5px); /* افکت شیشه‌ای */
+            background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
             border: 1px solid rgba(0, 243, 255, 0.3);
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+        }
+
+        /* استایل متن‌ها و افکت نئونی */
+        h1 {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* استایل دکمه پرداخت طبق درخواست شما */
+        .pay-button { 
+            display: inline-block; 
+            padding: 15px 30px; 
+            background-color: #00f3ff; 
+            color: #000; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 50px; 
+            box-shadow: 0 0 15px #00f3ff; 
+            transition: 0.3s; 
+        }
+
+        /* افکت Hover دکمه */
+        .pay-button:hover { 
+            transform: scale(1.1); 
+            background-color: #fff; 
+        }
+
+        /* بهینه‌سازی برای موبایل */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            p { font-size: 1rem; }
+            .pay-button { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="content-box">
-            <!-- بخش محتوا در دستورات بعدی تکمیل خواهد شد -->
-            <h1>آماده دریافت دستور بعدی...</h1>
-        </div>
+    <!-- بخش محتوای اصلی -->
+    <div class="content-box">
+        <h1>پایگاه حقیقت علمی</h1>
+        <p>به دنیای اکتشافات بی‌پایان خوش آمدید. با تهیه اشتراک ویژه، به آرشیو اختصاصی دسترسی پیدا کنید.</p>
+        <a href="https://nowpayments.io/donation/habibz" class="pay-button">ورود به درگاه پرداخت و خرید</a>
     </div>
 
 </body>
