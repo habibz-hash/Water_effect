@@ -1,11 +1,11 @@
-۷<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>پایگاه حقیقت علمی</title>
     <style>
-        /* تنظیمات پایه برای ظاهر مدرن و علمی */
+        /* تنظیمات پایه و فونت */
         * {
             margin: 0;
             padding: 0;
@@ -20,19 +20,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* پس‌زمینه کهکشانی از Unsplash */
+            /* پس‌زمینه کهکشانی با کیفیت از Unsplash */
             background: url('https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
         }
 
-        /* لایه پوششی تیره برای خوانایی بهتر متن */
+        /* لایه تیره برای افزایش خوانایی متن‌های نئونی */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             z-index: 1;
         }
 
@@ -57,13 +57,13 @@
             font-size: 1.2rem;
             color: #d1ffdb; /* رنگ سبز فسفری ملایم */
             margin-bottom: 40px;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* استایل دکمه پرداخت */
+        /* استایل دکمه پرداخت نئونی و مدرن */
         .pay-button {
             display: inline-block;
-            padding: 20px 40px;
+            padding: 18px 45px;
             font-size: 1.5rem;
             font-weight: bold;
             text-decoration: none;
@@ -71,21 +71,30 @@
             background-color: #00f2ff;
             border-radius: 50px;
             box-shadow: 0 0 15px #00f2ff, 0 0 30px #00f2ff;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease-in-out;
             border: none;
             cursor: pointer;
         }
 
+        /* افکت هنگام نگه داشتن موس روی دکمه */
         .pay-button:hover {
             transform: scale(1.1);
-            background-color: #fff;
+            background-color: #ffffff;
             box-shadow: 0 0 25px #00f2ff, 0 0 50px #00f2ff;
         }
 
-        /* واکنش‌گرایی برای موبایل */
+        /* واکنش‌گرایی برای صفحات موبایل */
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .pay-button { font-size: 1rem; padding: 15px 25px; }
+            h1 {
+                font-size: 2.2rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            .pay-button {
+                font-size: 1.1rem;
+                padding: 15px 30px;
+            }
         }
     </style>
 </head>
@@ -97,7 +106,8 @@
         <h1>پایگاه حقیقت علمی</h1>
         <p>به دنیای اکتشافات بی‌پایان خوش آمدید. اینجا جایی است که علم با رویا پیوند می‌خورد. با تهیه اشتراک ویژه، به آرشیو اختصاصی ویدیوهای آموزشی و تحلیل‌های علمی پیشرفته دسترسی پیدا کنید.</p>
         
-        <a href=ورود"https://nowpayments.io/donation/habibz"` به درگاه پرداخت و خرید</a>
+        <!-- دکمه با لینک اصلاح شده -->
+        <a href="https://nowpayments.io/donation/habibz" class="pay-button">ورود به درگاه پرداخت و خرید</a>
     </div>
 
 </body>
