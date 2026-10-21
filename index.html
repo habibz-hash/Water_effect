@@ -1,98 +1,278 @@
-```html
-پایگاه حقیقت علمی | پلتفرم آموزشی امن
-body { font-family: 'Vazirmatn', sans-serif; background-color: #020617; color: #f3f4f6; }
-.glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-.video-card { background: rgba(30, 41, 59, 0.3); border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.3s; }
-.modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); backdrop-filter: blur(15px); z-index: 100; }
-.star-active { color: #fbbf24; }
-.star-inactive { color: #4b5563; }
-‌
-پایگاه حقیقت علمی
-‌
-‌
-خرید دسترسی کامل
-آدرس تتر (TRC20):
-TMS2tWEHuuVVfbqS9LBdCJVvYuk7JSWpS8
-بستن
-‌
-قفل محتوای کامل
-برای مشاهده ادامه ویدیو، کد دسترسی را وارد کنید.
-انصراف
-تأیید و بازگشایی
-‌
-const CONFIG = {
-wallet: "TMS2tWEHuuVVfbqS9LBdCJVvYuk7JSWpS8",
-videos: [
-{
-id: "1",
-title: "آموزش پیشرفته سیاهچاله‌ها",
-description: "تحلیلی بر ساختارهای کیهانی و افق رویداد.",
-cid: "bafybeiejjc3mgufugo6fyy2se26hwpzfsl5smvglpemoswxqt53n65grbe",
-price: "10 USDT",
-code: "HABIB-101",
-previewSec: 60 // پیش‌نمایش ۶۰ ثانیه
-}
-]
-};
-‌
-function init() {
-const grid = document.getElementById('videoGrid');
-grid.innerHTML = CONFIG.videos.map(v => `
-زمان پیش‌نمایش به پایان رسید
-مشاهده کامل محتوا
-‌
-${v.title}
-${renderStars(v.id)}
-خرید اشتراک
-‌
-نظرات کاربران:
-`).join('');
-loadSavedData();
-}
-‌
-function checkPreview(el, id, limit) {
-if (el.currentTime >= limit && !el.dataset.unlocked) {
-el.pause();
-document.getElementById('overlay-' + id).classList.remove('hidden');
-}
-}
-‌
-function openAccessModal(id, code) {
-window.activeId = id;
-window.activeCode = code;
-document.getElementById('accessInput').value = '';
-document.getElementById('accessModal').style.display = 'flex';
-}
-‌
-function checkCode() {
-if (document.getElementById('accessInput').value.trim() === window.activeCode) {
-const vid = document.getElementById('vid-' + window.activeId);
-vid.dataset.unlocked = "true";
-document.getElementById('overlay-' + window.activeId).classList.add('hidden');
-vid.play();
-closeModal('accessModal');
-} else { alert('کد اشتباه است.'); }
-}
-‌
-function openPaymentModal(t, p) {
-document.getElementById('pTitle').innerText = t;
-document.getElementById('pPrice').innerText = p;
-document.getElementById('paymentModal').style.display = 'flex';
-}
-‌
-function renderStars(id) {
-let html = '';
-for(let i=1; i<=5; i++) html += ``;
-return html;
-}
-‌
-function addComment(id) {
-const input = document.getElementById('input-' + id);
-if(!input.value) return;
-const chat = document.getElementById('comments-' + id);
-chat.innerHTML += `💬 ${input.value}`;
-input.value = '';
-}
-‌
-function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-window.onload = init;
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archive Pro | پایگاه حقیقت علمی</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .video-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .video-card:hover { transform: translateY(-10px); border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+        .lock-overlay { background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(4px); }
+        .star-rating { color: #fbbf24; cursor: pointer; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 glass px-6 py-4 mb-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                <h1 class="text-xl font-bold tracking-tighter text-white">ARCHIVE<span class="text-blue-500">PRO</span></h1>
+            </div>
+            <div class="text-xs text-slate-400 font-mono">SECURE_ENCRYPTED_NODE: ACTIVE</div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Dynamically Injected -->
+        </div>
+    </main>
+
+    <!-- MODAL: ACCESS CODE -->
+    <div id="accessModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass max-w-md w-full p-8 rounded-2xl">
+            <h2 class="text-2xl font-semibold mb-2 text-center">محتوای کامل قفل شده است</h2>
+            <p class="text-slate-400 mb-6 text-center text-sm">برای تماشای ادامه ویدیو، کد دسترسی خود را وارد کنید.</p>
+            <input type="text" id="codeInput" placeholder="Enter Access Code" 
+                class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 mb-4 focus:outline-none focus:border-blue-500 text-center tracking-[0.5em] text-xl">
+            <div class="flex gap-3">
+                <button onclick="verifyCode()" class="flex-1 bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold transition">تایید</button>
+                <button onclick="closeModal('accessModal')" class="flex-1 bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-medium transition">انصراف</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: PAYMENT -->
+    <div id="paymentModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass max-w-md w-full p-8 rounded-2xl text-center">
+            <h2 class="text-2xl font-semibold mb-6">پرداخت دسترسی</h2>
+            <p id="paymentPriceDisplay" class="text-blue-400 text-3xl font-mono mb-6"></p>
+            <div class="bg-black/50 p-4 rounded-xl mb-6 border border-slate-800">
+                <p class="text-[10px] text-slate-500 mb-2 uppercase tracking-widest">Wallet Address</p>
+                <p id="walletDisplay" class="text-xs font-mono break-all text-slate-300"></p>
+            </div>
+            <button onclick="closeModal('paymentModal')" class="w-full bg-slate-800 hover:bg-slate-700 py-3 rounded-xl font-medium transition">بستن</button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * CONFIGURATION
+         * The single source of truth.
+         */
+        const CONFIG = {
+            walletAddress: "TMS2tWEHuuVVfbqS9LBdCJVvYuk7JSWpS8",
+            videos: [
+                {
+                    id: "v1",
+                    title: "آموزش پیشرفته Web3",
+                    description: "مفاهیم عمیق بلاکچین و پیاده‌سازی قراردادهای هوشمند.",
+                    cid: "`bafybeiejjc3mgufugo6fyy2se26hwpzfsl5smvglpemoswxqt53n65grbe`).", // Dummy IPFS CID
+                    price: "10000000 USDT",
+                    accessCode: "TRUTH2026",
+                    previewDuration: 10, // seconds
+                    views: 1240
+                },
+                {
+                    id: "v2",
+                    title: "رمزگشایی از هوش مصنوعی",
+                    description: "چگونه از مدل‌های زبانی بزرگ برای تحلیل داده‌های مخفی استفاده کنیم؟",
+                    cid: "QmZ4t987654321ExampleCID",
+                    price: "0.1 ETH",
+                    accessCode: "SECRET123",
+                    previewDuration: 5,
+                    views: 850
+                }
+            ]
+        };
+
+        let currentAttemptedVideoId = null;
+
+        /**
+         * INITIALIZATION
+         */
+        function init() {
+            document.getElementById('walletDisplay').innerText = CONFIG.walletAddress;
+            const grid = document.getElementById('videoGrid');
+            
+            grid.innerHTML = CONFIG.videos.map(video => `
+                <div class="video-card glass rounded-3xl overflow-hidden flex flex-col" id="card-${video.id}">
+                    <!-- Video Section -->
+                    <div class="relative aspect-video bg-black group">
+                        <video id="player-${video.id}" 
+                               class="w-full h-full object-cover" 
+                               ontimeupdate="handleTimeUpdate(this, '${video.id}')"
+                               onended="handleVideoEnd('${video.id}')"
+                               controlsList="nodownload">
+                            <source src="https://ipfs.io/ipfs/${video.cid}" type="video/mp4">
+                        </video>
+                        
+                        <!-- Lock Overlay (Visible during preview or if locked) -->
+                        <div id="overlay-${video.id}" class="absolute inset-0 lock-overlay flex flex-col items-center justify-center text-center p-4 transition-opacity duration-500">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mb-3">
+                                <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                            </div>
+                            <button onclick="openAccessModal('${video.id}')" class="text-sm font-bold bg-blue-600 px-4 py-2 rounded-lg">مشاهده کامل</button>
+                            <p class="text-[10px] text-slate-500 mt-2">Preview ends in <span id="timer-${video.id}">--</span>s</p>
+                        </div>
+                    </div>
+
+                    <!-- Content Section -->
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold">${video.title}</h3>
+                            <span class="text-[10px] bg-slate-800 px-2 py-1 rounded text-slate-400 uppercase">👁️ ${video.views}</span>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6 line-clamp-2">${video.description}</p>
+
+                        <!-- Rating -->
+                        <div class="flex items-center gap-1 mb-6" id="rating-container-${video.id}">
+                            <!-- Stars injected by JS -->
+                        </div>
+
+                        <!-- Comment Section -->
+                        <div class="mt-auto">
+                            <div class="text-[10px] text-slate-500 uppercase mb-2 tracking-widest">Comments</div>
+                            <div id="comments-list-${video.id}" class="max-h-24 overflow-y-auto mb-3 space-y-2 text-xs text-slate-300">
+                                <!-- Comments injected here -->
+                            </div>
+                            <div class="flex gap-2">
+                                <input type="text" id="comment-input-${video.id}" placeholder="Add comment..." 
+                                    class="flex-1 bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs focus:outline-none focus:border-blue-500">
+                                <button onclick="addComment('${video.id}')" class="bg-slate-800 px-3 py-1.5 rounded-lg text-xs hover:bg-blue-600 transition">Post</button>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 mt-6">
+                             <button onclick="openPaymentModal('${video.price}')" class="flex-1 bg-slate-800 hover:bg-slate-700 py-2 rounded-lg text-xs font-semibold transition">Buy Access</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Ratings and Comments for all
+            CONFIG.videos.forEach(v => {
+                renderRating(v.id);
+                renderComments(v.id);
+            });
+        }
+
+        /**
+         * VIDEO LOGIC (PREVIEW SYSTEM)
+         */
+        function handleTimeUpdate(player, videoId) {
+            const videoConfig = CONFIG.videos.find(v => v.id === videoId);
+            const timerDisplay = document.getElementById(`timer-${videoId}`);
+            
+            // Check if user has already unlocked this video (simulated via a global set or localStorage)
+            const isUnlocked = localStorage.getItem(`unlocked_${videoId}`);
+            if (isUnlocked) {
+                document.getElementById(`overlay-${videoId}`).classList.add('opacity-0', 'pointer-events-none');
+                return;
+            }
+
+            if (player.currentTime < videoConfig.previewDuration) {
+                const remaining = Math.ceil(videoConfig.previewDuration - player.currentTime);
+                timerDisplay.innerText = remaining;
+            }
+        }
+
+        function handleVideoEnd(videoId) {
+            const videoConfig = CONFIG.videos.find(v => v.id === videoId);
+            const player = document.getElementById(`player-${videoId}`);
+            
+            // If video reaches end of preview, pause and show lock
+            if (player.currentTime >= videoConfig.previewDuration) {
+                player.pause();
+                document.getElementById(`overlay-${videoId}`).classList.remove('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function verifyCode() {
+            const input = document.getElementById('codeInput').value.trim();
+            const video = CONFIG.videos.find(v => v.id === currentAttemptedVideoId);
+
+            if (video && input === video.accessCode) {
+                localStorage.setItem(`unlocked_${video.id}`, 'true');
+                unlockVideo(video.id);
+                closeModal('accessModal');
+            } else {
+                alert('Invalid Access Code!');
+            }
+        }
+
+        function unlockVideo(videoId) {
+            const overlay = document.getElementById(`overlay-${videoId}`);
+            const player = document.getElementById(`player-${videoId}`);
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            player.play();
+        }
+
+        /**
+         * FEEDBACK SYSTEM (RATING & COMMENTS)
+         */
+        function renderRating(videoId) {
+            const container = document.getElementById(`rating-container-${videoId}`);
+            const savedRating = localStorage.getItem(`rating_${videoId}`) || 0;
+            
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += `<span class="star-rating ${i <= savedRating ? '' : 'text-slate-700'}" onclick="setRating('${videoId}', ${i})">★</span>`;
+            }
+            container.innerHTML = starsHtml;
+        }
+
+        function setRating(videoId, rating) {
+            localStorage.setItem(`rating_${videoId}`, rating);
+            renderRating(videoId);
+        }
+
+        function addComment(videoId) {
+            const input = document.getElementById(`comment-input-${videoId}`);
+            const text = input.value.trim();
+            if (!text) return;
+
+            const comments = JSON.parse(localStorage.getItem(`comments_${videoId}`) || '[]');
+            comments.push({ text, date: new Date().toLocaleDateString() });
+            localStorage.setItem(`comments_${videoId}`, JSON.stringify(comments));
+            
+            input.value = '';
+            renderComments(videoId);
+        }
+
+        function renderComments(videoId) {
+            const list = document.getElementById(`comments-list-${videoId}`);
+            const comments = JSON.parse(localStorage.getItem(`comments_${videoId}`) || '[]');
+            
+            if (comments.length === 0) {
+                list.innerHTML = '<div class="italic opacity-30 text-[10px]">No comments yet.</div>';
+                return;
+            }
+
+            list.innerHTML = comments.map(c => `
+                <div class="bg-white/5 p-2 rounded border border-white/5">
+                    <p>${c.text}</p>
+                    <span class="text-[8px] text-slate-500">${c.date}</span>
+                </div>
+            `).reverse().join('');
+        }
+
+        // UI Helper
+        function openAccessModal(id) { currentAttemptedVideoId = id; document.getElementById('accessModal').classList.remove('hidden'); }
+        function openPaymentModal(price) { document.getElementById('paymentPriceDisplay').innerText = price; document.getElementById('paymentModal').classList.remove('hidden'); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
