@@ -3,102 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پایگاه حقیقت علمی</title>
+    <title>Private Archive | پایگاه حقیقت</title>
+    <!-- Tailwind CSS for high-end styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* وارد کردن فونت مدرن فارسی */
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700&display=swap');
-
-        /* تنظیمات پایه و حذف حاشیه‌ها */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: 'Vazirmatn', sans-serif;
-            overflow: hidden; /* برای حالت تک‌صفحه‌ای */
-        }
-
-        /* تنظیم پس‌زمینه تمام‌صفحه، ثابت و Cover */
         body {
-            background-image: url('https://s6.uupload.ir/files/8nljqchtvomd-hl_fwp_w8_4ecg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            
-            /* مرکزگرایی محتوا در وسط صفحه */
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: 'Inter', sans-serif;
+            background-color: #020617; /* Deep Space Blue */
+            color: #f8fafc;
+            overflow-x: hidden;
         }
-
-        /* باکس محتوا با طراحی شیشه‌ای و نئونی */
-        .content-box {
-            background: rgba(0, 0, 0, 0.6); 
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 25px;
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            text-align: center;
-            max-width: 550px;
-            width: 90%;
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* استایل متن‌ها و افکت نئونی */
-        h1 {
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-            margin-bottom: 20px;
-            font-size: 2.5rem;
-            font-weight: 700;
+        .video-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.5);
         }
-
-        p {
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
-            line-height: 1.8;
-            margin-bottom: 35px;
-            font-size: 1.1rem;
-            font-weight: 400;
+        .modal-enter {
+            animation: fadeIn 0.3s ease-out forwards;
         }
-
-        /* استایل دکمه پرداخت طبق درخواست شما */
-        .pay-button { 
-            display: inline-block; 
-            padding: 15px 30px; 
-            background-color: #00f3ff; 
-            color: #000; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border-radius: 50px; 
-            box-shadow: 0 0 15px #00f3ff; 
-            transition: 0.3s; 
-        }
-
-        /* افکت Hover دکمه */
-        .pay-button:hover { 
-            transform: scale(1.1); 
-            background-color: #fff; 
-        }
-
-        /* بهینه‌سازی برای موبایل */
-        @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            p { font-size: 1rem; }
-            .pay-button { font-size: 1rem; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;"> <!-- Prevents right-click for basic protection -->
 
-    <!-- بخش محتوای اصلی -->
-    <div class="content-box">
-        <h1>پایگاه حقیقت علمی</h1>
-        <p>به دنیای اکتشافات بی‌پایان خوش آمدید. با تهیه اشتراک ویژه، به آرشیو اختصاصی دسترسی پیدا کنید.</p>
-        <a href="https://nowpayments.io/donation/habibz" class="pay-button">ورود به درگاه پرداخت و خرید</a>
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 glass px-6 py-4 mb-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-tighter text-blue-500">PRIVATE ARCHIVE</h1>
+            <div class="text-sm text-slate-400 opacity-70">Encrypted Knowledge Base</div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-7xl mx-auto px-6 pb-20">
+        <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- JavaScript will inject video cards here -->
+        </div>
+    </main>
+
+    <!-- MODAL: ACCESS CODE -->
+    <div id="accessModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="glass max-w-md w-full p-8 rounded-2xl modal-enter">
+            <h2 class="text-2xl font-semibold mb-4">رمز ورود ویدیو</h2>
+            <p class="text-slate-400 mb-6 text-sm">لطفاً کد دسترسی دریافت شده را وارد کنید تا محتوا باز شود.</p>
+            <input type="text" id="codeInput" placeholder="Enter Access Code" 
+                class="w-full bg-slate-900/50 border border-slate-700 rounded-lg p-3 mb-4 focus:outline-none focus:border-blue-500 text-center tracking-widest">
+            <div class="flex gap-3">
+                <button onclick="verifyCode()" class="flex-1 bg-blue-600 hover:bg-blue-500 py-3 rounded-lg font-medium transition">تایید</button>
+                <button onclick="closeModal('accessModal')" class="flex-1 bg-slate-800 hover:bg-slate-700 py-3 rounded-lg font-medium transition">انصراف</button>
+            </div>
+        </div>
     </div>
 
+    <!-- MODAL: PAYMENT -->
+    <div id="paymentModal" class="fixed inset-0 z-[60] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div class="glass max-w-md w-full p-8 rounded-2xl modal-enter text-center">
+            <div class="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h2 class="text-2xl font-semibold mb-2">پرداخت دسترسی</h2>
+            <p id="paymentPriceDisplay" class="text-blue-400 text-lg mb-6 font-mono"></p>
+            <div class="bg-black/40 p-4 rounded-lg mb-6 overflow-hidden">
+                <p class="text-xs text-slate-500 mb-2 uppercase tracking-widest">Wallet Address</p>
+                <p id="walletDisplay" class="text-sm font-mono break-all text-slate-200"></p>
+            </div>
+            <button onclick="closeModal('paymentModal')" class="w-full bg-slate-800 hover:bg-slate-700 py-3 rounded-lg font-medium transition">بستن</button>
+        </div>
+    </div>
+
+    <script>
+        /**
+         * CONFIGURATION OBJECT
+         * This is your "Control Center". Add or remove videos here.
+         */
+        const CONFIG = {
+            walletAddress: "0x71C7656EC7ab88b098defB751B7409B5aCAb0e56", // Replace with your actual wallet
+            videos: [
+                {
+                    id: "v1",
+                    title: "آموزش پیشرفته Web3",
+                    description: "مفاهیم عمیق بلاکچین و پیاده‌سازی قراردادها.",
+                    cid: "QmXoypizjW3WknFiJnKLwHCnL72vedxjQkDdpwNavw5aBR", // Example IPFS CID
+                    price: "0.05 ETH",
+                    accessCode: "TRUTH2026"
+                },
+                {
+                    id: "v2",
+                    title: "رمزگشایی از هوش مصنوعی",
+                    description: "چگونه از AI برای تحلیل داده‌های مخفی استفاده کنیم؟",
+                    cid: "QmZ4t987654321ExampleCID", 
+                    price: "0.1 ETH",
+                    accessCode: "SECRET123"
+                }
+            ]
+        };
+
+        let currentAttemptedVideoId = null;
+
+        // Initialize the site
+        function init() {
+            document.getElementById('walletDisplay').innerText = CONFIG.walletAddress;
+            const grid = document.getElementById('videoGrid');
+            
+            grid.innerHTML = CONFIG.videos.map(video => `
+                <div class="video-card glass rounded-2xl overflow-hidden transition-all duration-300 group">
+                    <!-- Video Preview / Placeholder -->
+                    <div class="relative aspect-video bg-slate-900 flex items-center justify-center overflow-hidden">
+                        <div id="preview-${video.id}" class="absolute inset-0 flex flex-col items-center justify-center text-slate-600">
+                            <svg class="w-12 h-12 mb-2 opacity-20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clip-rule="evenodd"></path></svg>
+                            <span class="text-xs uppercase tracking-widest opacity-40">Content Locked</span>
+                        </div>
+                        <!-- The actual video element (hidden by default) -->
+                        <video id="player-${video.id}" class="hidden w-full h-full object-cover" controls controlsList="nodownload">
+                            <source src="https://ipfs.io/ipfs/${video.cid}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+
+                    <!-- Info Area -->
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-2">${video.title}</h3>
+                        <p class="text-slate-400 text-sm mb-6 line-clamp-2">${video.description}</p>
+                        
+                        <div class="flex items-center justify-between gap-4">
+                            <button onclick="openAccessModal('${video.id}')" 
+                                class="flex-1 bg-white text-black hover:bg-blue-500 hover:text-white py-2 rounded-lg text-sm font-bold transition-colors">
+                                باز کردن محتوا
+                            </button>
+                            <button onclick="openPaymentModal('${video.price}')" 
+                                class="px-4 py-2 border border-slate-700 rounded-lg text-sm hover:bg-slate-800 transition">
+                                خرید
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modal Logic
+        function openAccessModal(videoId) {
+            currentAttemptedVideoId = videoId;
+            document.getElementById('accessModal').classList.remove('hidden');
+            document.getElementById('codeInput').focus();
+        }
+
+        function openPaymentModal(price) {
+            document.getElementById('paymentPriceDisplay').innerText = price;
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById('codeInput').value = '';
+        }
+
+        // Security/Access Logic
+        function verifyCode() {
+            const input = document.getElementById('codeInput').value.trim();
+            const video = CONFIG.videos.find(v => v.id === currentAttemptedVideoId);
+
+            if (video && input === video.accessCode) {
+                unlockVideo(video.id);
+                closeModal('accessModal');
+            } else {
+                alert('کد اشتباه است!');
+            }
+        }
+
+        function unlockVideo(videoId) {
+            const preview = document.getElementById(`preview-${videoId}`);
+            const player = document.getElementById(`player-${videoId}`);
+            
+            if (preview && player) {
+                preview.classList.add('hidden');
+                player.classList.remove('hidden');
+                player.play();
+            }
+        }
+
+        // Run on load
+        window.onload = init;
+    </script>
 </body>
 </html>
